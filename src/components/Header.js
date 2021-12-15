@@ -10,6 +10,7 @@ import {
   setUserLoginDetails,
   setSignOutState,
 } from '../features/user/userSlice'
+import { Link } from 'react-router-dom'
 
 function Header() {
   const dispatch = useDispatch()
@@ -60,17 +61,20 @@ function Header() {
 
   return (
     <Nav>
-      <Logo src='/images/logo.svg' />
-
+      <Link to='/'>
+        <Logo src='/images/logo.svg' />
+      </Link>
       {!userName ? (
         <Login onClick={handleAuth}>Login</Login>
       ) : (
         <>
           <NavMenu>
-            <a>
-              <img src='/images/home-icon.svg' alt='homeIcon' />
-              <span>HOME</span>
-            </a>
+            <Link to='/home'>
+              <a>
+                <img src='/images/home-icon.svg' alt='homeIcon' />
+                <span>HOME</span>
+              </a>
+            </Link>
 
             <a>
               <img src='/images/search-icon.svg' alt='searchIcon' />
@@ -121,6 +125,7 @@ const Nav = styled.nav`
 
 const Logo = styled.img`
   width: 80px;
+  cursor: pointer;
 `
 const NavMenu = styled.div`
   display: flex;
@@ -133,6 +138,8 @@ const NavMenu = styled.div`
     align-items: center;
     padding: 0 12px;
     cursor: pointer;
+    text-decoration: none;
+    color: white;
 
     img {
       height: 20px;
